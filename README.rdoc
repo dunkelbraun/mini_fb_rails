@@ -1,0 +1,55 @@
+= MiniFB Rails -- Facebook Connect Verification Filters for Rails.
+
+MiniFB Rails extends MiniFB to provide verification filters to Facebook Connect based Rails applications.
+
+== Download and installation
+
+The latest version of Seed Loader can be installed with Rubygems:
+  % [sudo] gem install mini_fb_rails
+
+Include the gem in your Gemfile:
+  gem 'mini_fb_rails'
+  
+Source code can be downloaded from Github:
+
+  * http://github.com/dunkelbraun/mini_fb_rails
+
+
+
+== Usage
+
+MiniFB Rails exposes the following filters to applications that interact with Facebook Connect 
+  
+  * ensure_valid_facebook_signed_request
+
+    Add this filter to those actions for which you expect a signed request from Facebook.
+    The filter will validate the signed request.
+    In addition, the filter will replace the unparsed signed request parameter with a parsed signed request.
+    If the signed request is not valid, a 401 response will be rendered.
+    
+    
+  * ensure_facebook_session
+
+    Add this filter to those actions for which you expect to facebook session.
+    The filter will validate that a Facebook cookie is present, and that the facebook cookie was set by Facebook.
+    In addition, the filter will expose the parsed facebook cookie through facebook_session
+    
+    If the Facebook cookie is missing, the filter will redirect to the root_url. You can customize the redirection url 
+    by overriding no_facebook_session_url
+    If the Facebook cookie was tampered, a 401 response will be rendered.
+
+
+
+== Contributing to mini_fb_rails
+ 
+* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
+* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
+* Fork the project
+* Start a feature/bugfix branch
+* Commit and push until you are happy with your contribution
+* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
+* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+
+== License
+
+MiniFB Rails is released under the MIT license.
